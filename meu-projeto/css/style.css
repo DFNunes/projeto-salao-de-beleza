@@ -2,6 +2,37 @@
    Ele define a aparência visual dos elementos HTML presentes no index.html. */
 
 /* Exemplo de estilo para o corpo da página */
+/* Estilo para alinhar os itens do menu lado a lado */
+nav ul {
+    display: flex; /* Alinha os itens em linha */
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o espaçamento interno */
+    margin: 0; /* Remove o espaçamento externo */
+}
+
+nav ul li {
+    margin-right: 15px; /* Espaçamento entre os itens */
+}
+nav ul li a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: #000; /* Cor do texto */
+    padding: 10px 15px; /* Adiciona espaçamento interno ao redor do texto */
+    border: 2px solid #000; /* Cria um quadrado ao redor do botão */
+    border-radius: 5px; /* Deixa os cantos levemente arredondados */
+    display: inline-block; /* Garante que o link seja tratado como um bloco */
+    margin-top: 10px; /* Adiciona espaçamento superior */
+}
+nav ul li a.active {
+    background-color: #007BFF; /* Cor de fundo do botão ativo */
+    color: #fff; /* Cor do texto do botão ativo */
+    border-color: #0056b3; /* Cor da borda do botão ativo */
+}
+nav ul li a:hover {
+    background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+    color: #007BFF; /* Cor do texto ao passar o mouse */
+    border-color: #007BFF; /* Cor da borda ao passar o mouse */
+    cursor: pointer; /* Mostra o cursor de "mãozinha" */
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
