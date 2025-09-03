@@ -115,3 +115,10 @@ button.editar:hover {
 button.deletar:hover {
     background-color: #cc0000;
 }
+
+/* Estilo para linhas inativas */
+tr.inativo {
+    background-color: #f4f4f4; /* Cor de fundo mais escura */
+    color: #999; /* Cor do texto mais clara */
+    text-decoration: line-through; /* Adiciona um risco no texto */
+}

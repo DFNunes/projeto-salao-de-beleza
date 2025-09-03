@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR"></html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salão - profissionais</title>
+    <title>Salão - Profissionais</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
         </nav>
     </header>
     <main>
-        <form action="/cadastrar-funcionario" method="POST">
+        <form id="form-cadastro-funcionarios">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -33,10 +33,11 @@
             <input type="text" id="cargo" name="cargo" required>
 
             <label for="salario">Salário:</label>
-            <input type="number" id="salario" name="salario" step="0.01" required>
+            <input type="number" id="salario" name="salario" required>
 
             <button type="submit">Cadastrar</button>
         </form>
+
         <h2>Lista de Funcionários</h2>
         <table border="1">
             <thead>
@@ -65,5 +66,9 @@
             </tbody>
         </table>
     </main>
+    <footer>
+        <p>&copy; 2025 Software para salões</p>
+    </footer>
+    <script src="../js/script.js"></script>
 </body>
 </html>

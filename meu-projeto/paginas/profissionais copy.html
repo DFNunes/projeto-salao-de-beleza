@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salão - clientes</title>
+    <title>Salão - profissionais</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
             <ul>
                 <li><a href="../index.html">Salão</a></li>
                 <li><a href="agendamento.html">Agendamento</a></li>
-                <li><a href="cliente.html" class="active">Cliente</a></li>
+                <li><a href="cliente.html">Cliente</a></li>
                 <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="profissionais.html">Profissionais</a></li>
+                <li><a href="profissionais.html" class="active">Profissionais</a></li>
             </ul>
         </nav>
     </header>
@@ -28,6 +28,12 @@
 
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" required>
+
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" required>
+
+            <label for="salario">Salário:</label>
+            <input type="number" id="salario" name="salario" step="0.01" required>
 
             <button type="submit">Cadastrar</button>
         </form>
@@ -59,7 +65,7 @@
             </tbody>
         </table>
     </main>
-    <footer>
+        <footer>
         <p>&copy; 2025 Software para salões</p>
     </footer>
     <script src="../js/script.js"></script>
