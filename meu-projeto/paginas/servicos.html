@@ -19,25 +19,42 @@
         </nav>
     </header>
     <main>
-        <form action="/cadastrar-funcionario" method="POST">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" required>
-
-            <label for="cargo">Cargo:</label>
-            <input type="text" id="cargo" name="cargo" required>
-
-            <label for="salario">Salário:</label>
-            <input type="number" id="salario" name="salario" step="0.01" required>
-
+        <form id="form-cadastro-servicos">
+            <label for="categoria">Categoria:</label>
+            <input type="text" id="categoria" name="categoria" required>
+        
+            <label for="servico">Serviço:</label>
+            <input type="text" id="servico" name="servico" required>
+        
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" name="valor" required>
+        
+            <label for="horas">Horas:</label>
+            <input type="number" id="horas" name="horas" min="0" required>
+        
+            <label for="minutos">Minutos:</label>
+            <input type="number" id="minutos" name="minutos" min="0" max="59" required>
+        
             <button type="submit">Cadastrar</button>
         </form>
+        
         <h2>Lista de Serviços</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Serviço</th>
+                    <th>Valor</th>
+                    <th>Tempo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas serão adicionadas dinamicamente -->
+            </tbody>
+        </table>
+<!--
+        <h2>Lista de Funcionários</h2>
         <table border="1">
             <thead>
                 <tr>
@@ -50,7 +67,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Exemplo de linha preenchida -->
+                 Exemplo de linha preenchida 
                 <tr>
                     <td>João Silva</td>
                     <td>joao@email.com</td>
@@ -62,7 +79,7 @@
                         <button class="deletar">Deletar</button>
                     </td>
                 </tr>
-            </tbody>
+            </tbody>  -->
         </table>
     </main>
     <footer>
