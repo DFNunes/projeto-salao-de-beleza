@@ -9,37 +9,40 @@ document.addEventListener("click", function (event) {
 */
 
 // Função para adicionar uma nova linha à tabela
-document.getElementById("form-cadastro-funcionarios").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita o recarregamento da página
+const formFuncionarios = document.getElementById("form-cadastro-funcionarios");
+if (formFuncionarios) {
+    formFuncionarios.addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita o recarregamento da página
 
-    // Captura os valores do formulário
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const telefone = document.getElementById("telefone").value;
-    const cargo = document.getElementById("cargo").value;
-   // const salario = document.getElementById("salario").value;
+        // Captura os valores do formulário
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+        const telefone = document.getElementById("telefone").value;
+        const cargo = document.getElementById("cargo").value;
+        // const salario = document.getElementById("salario").value;
 
-    // Cria uma nova linha na tabela
-    const tabela = document.querySelector("table tbody");
-    const novaLinha = document.createElement("tr");
+        // Cria uma nova linha na tabela
+        const tabela = document.querySelector("table tbody");
+        const novaLinha = document.createElement("tr");
 
-    novaLinha.innerHTML = `
-        <td>${nome}</td>
-        <td>${email}</td>
-        <td>${telefone}</td>
-        <td>${cargo}</td>
-        <td>
-            <button class="editar">Editar</button>
-            <button class="deletar">Deletar</button>
-        </td>
-    `; //removido do innerHTML:     <td>R$ ${parseFloat(salario).toFixed(2)}</td>
+        novaLinha.innerHTML = `
+            <td>${nome}</td>
+            <td>${email}</td>
+            <td>${telefone}</td>
+            <td>${cargo}</td>
+            <td>
+                <button class="editar">Editar</button>
+                <button class="deletar">Deletar</button>
+            </td>
+        `; // removido do innerHTML: <td>R$ ${parseFloat(salario).toFixed(2)}</td>
 
-    // Adiciona a nova linha à tabela
-    tabela.appendChild(novaLinha);
+        // Adiciona a nova linha à tabela
+        tabela.appendChild(novaLinha);
 
-    // Limpa os campos do formulário
-    document.getElementById("form-cadastro-funcionarios").reset();
-});
+        // Limpa os campos do formulário
+        document.getElementById("form-cadastro-funcionarios").reset();
+    });
+}
 
 // Função para "inativar" uma linha da tabela
 document.addEventListener("click", function (event) {
@@ -67,8 +70,9 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// Função para adicionar um novo serviço à tabela
-document.getElementById("form-cadastro-servicos").addEventListener("submit", function (event) {
+const formServicos = document.getElementById("form-cadastro-servicos");
+if (formServicos) {
+    formServicos.addEventListener("submit", function (event) {
     event.preventDefault(); // Evita o recarregamento da página
 
     // Captura os valores do formulário
@@ -102,3 +106,4 @@ document.getElementById("form-cadastro-servicos").addEventListener("submit", fun
     // Limpa os campos do formulário
     document.getElementById("form-cadastro-servicos").reset();
 });
+}
