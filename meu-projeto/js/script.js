@@ -44,32 +44,6 @@ if (formFuncionarios) {
     });
 }
 
-// Função para "inativar" uma linha da tabela
-document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("deletar")) {
-        const row = event.target.closest("tr"); // Encontra a linha mais próxima
-        row.classList.add("inativo"); // Adiciona a classe "inativo" para estilização
-    }
-});
-
-// Função para editar uma linha da tabela
-document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("editar")) {
-        const row = event.target.closest("tr"); // Encontra a linha mais próxima
-        const cells = row.querySelectorAll("td"); // Seleciona todas as células da linha
-
-        // Preenche os campos do formulário com os valores da linha
-        document.getElementById("nome").value = cells[0].textContent;
-        document.getElementById("email").value = cells[1].textContent;
-        document.getElementById("telefone").value = cells[2].textContent;
-        document.getElementById("cargo").value = cells[3].textContent;
-       // document.getElementById("salario").value = cells[4].textContent.replace("R$ ", "");
-
-        // Remove a linha da tabela (opcional, para evitar duplicação)
-        row.remove();
-    }
-});
-
 const formServicos = document.getElementById("form-cadastro-servicos");
 if (formServicos) {
     formServicos.addEventListener("submit", function (event) {
@@ -107,3 +81,46 @@ if (formServicos) {
     document.getElementById("form-cadastro-servicos").reset();
 });
 }
+
+// Função para "inativar" uma linha da tabela
+document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("deletar")) {
+        const row = event.target.closest("tr"); // Encontra a linha mais próxima
+        row.classList.add("inativo"); // Adiciona a classe "inativo" para estilização
+    }
+});
+
+// Função para editar uma linha da tabela
+document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("editar")) {
+        const row = event.target.closest("tr"); // Encontra a linha mais próxima
+        const cells = row.querySelectorAll("td"); // Seleciona todas as células da linha
+               // Verifica se a linha está inativa
+               if (row.classList.contains("inativo")) {
+                alert("Não é possível editar um registro inativo."); // Mensagem de aviso
+                return; // Interrompe a execução
+            }
+    
+        const tabela = row.closest("table"); // Identifica a tabela
+
+        if (tabela.id === "tabela-profissionais") {
+            // Edição para a tabela de profissionais
+            document.getElementById("nome").value = cells[0].textContent;
+            document.getElementById("email").value = cells[1].textContent;
+            document.getElementById("telefone").value = cells[2].textContent;
+            document.getElementById("cargo").value = cells[3].textContent;
+            // document.getElementById("salario").value = cells[4].textContent.replace("R$ ", "");
+        } else if (tabela.id === "tabela-servicos") {
+            // Edição para a tabela de serviços
+            document.getElementById("categoria").value = cells[0].textContent;
+            document.getElementById("servico").value = cells[1].textContent;
+            document.getElementById("valor").value = cells[2].textContent.replace("R$ ", "");
+            const tempo = cells[3].textContent.split(" ");
+            document.getElementById("horas").value = parseInt(tempo[0].replace("h", "")) || 0;
+            document.getElementById("minutos").value = parseInt(tempo[1].replace("m", "")) || 0;
+        }
+
+        // Remove a linha da tabela (opcional, para evitar duplicação)
+        row.remove();
+    }
+});
