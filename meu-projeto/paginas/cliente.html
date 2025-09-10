@@ -19,7 +19,7 @@
         </nav>
     </header>
     <main>
-        <form id="form-cadastro-funcionarios">
+        <form id="form-cadastro-clientes">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -28,32 +28,28 @@
 
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" required>
-
-            <label for="cargo">Cargo:</label>
-            <input type="text" id="cargo" name="cargo" required>
-
-            <label for="salario">Salário:</label>
-            <input type="number" id="salario" name="salario" required>
-
+            
+            <label for="imagem">Foto:</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*">
+            
             <button type="submit">Cadastrar</button>
         </form>
 
-        <h2>Lista de Funcionários</h2>
-        <table border="1">
+        <h2>Lista de Clientes</h2>
+        <table border="1" id="tabela-clientes">
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
-                    <th>Cargo</th>
-                    <th>Salário</th>
+                    <th>Foto</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Exemplo de linha preenchida -->
                 <tr>
-                    <td>João Silva</td>
+                    <!--<td>João Silva</td>
                     <td>joao@email.com</td>
                     <td>(11) 99999-9999</td>
                     <td>Cabeleireiro</td>
@@ -61,7 +57,7 @@
                     <td>
                         <button class="editar">Editar</button>
                         <button class="deletar">Deletar</button>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>

@@ -82,6 +82,44 @@ if (formServicos) {
 });
 }
 
+// Função para adicionar uma nova linha à tabela
+const formClientes = document.getElementById("form-cadastro-clientes");
+if (formClientes) {
+    formClientes.addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita o recarregamento da página
+
+        // Captura os valores do formulário
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+        const telefone = document.getElementById("telefone").value;
+        const imagem = document.getElementById("imagem").files[0];
+        const imagemURL = imagem ? URL.createObjectURL(imagem) : "";
+       // const cargo = document.getElementById("imagem").value;
+        // const salario = document.getElementById("salario").value;
+
+        // Cria uma nova linha na tabela
+        const tabela = document.querySelector("table tbody");
+        const novaLinha = document.createElement("tr");
+
+        novaLinha.innerHTML = `
+            <td>${nome}</td>
+            <td>${email}</td>
+            <td>${telefone}</td>
+            <td><img src="${imagemURL}" alt="Imagem do cliente" class="imagem-cliente"></td>
+            <td>
+                <button class="editar">Editar</button>
+                <button class="deletar">Deletar</button>
+            </td>
+        `;
+
+        // Adiciona a nova linha à tabela
+        tabela.appendChild(novaLinha);
+
+        // Limpa os campos do formulário
+        document.getElementById("form-cadastro-clientes").reset();
+    });
+}
+
 // Função para "inativar" uma linha da tabela
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("deletar")) {
@@ -118,6 +156,12 @@ document.addEventListener("click", function (event) {
             const tempo = cells[3].textContent.split(" ");
             document.getElementById("horas").value = parseInt(tempo[0].replace("h", "")) || 0;
             document.getElementById("minutos").value = parseInt(tempo[1].replace("m", "")) || 0;
+        } else if (tabela.id === "tabela-clientes") {
+            // Edição para a tabela de clientes
+            document.getElementById("nome").value = cells[0].textContent;
+            document.getElementById("email").value = cells[1].textContent;
+            document.getElementById("telefone").value = cells[2].textContent;
+            // A imagem não é editada diretamente, pois requer upload
         }
 
         // Remove a linha da tabela (opcional, para evitar duplicação)

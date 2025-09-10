@@ -19,51 +19,48 @@
         </nav>
     </header>
     <main>
-        <form action="/cadastrar-funcionario" method="POST">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" required>
-
-            <label for="cargo">Cargo:</label>
-            <input type="text" id="cargo" name="cargo" required>
-
-            <label for="salario">Salário:</label>
-            <input type="number" id="salario" name="salario" step="0.01" required>
-
-            <button type="submit">Cadastrar</button>
+        <form id="form-agendamento">
+            <h2>Agendamento</h2>
+        
+            <!-- Selecionar Cliente -->
+            <label for="cliente">Cliente:</label>
+            <select id="cliente" name="cliente" required>
+                <option value="" disabled selected>Selecione um cliente</option>
+                <option value="1" data-telefone="(11) 99999-9999" data-foto="cliente1.jpg">João Silva</option>
+                <option value="2" data-telefone="(21) 88888-8888" data-foto="cliente2.jpg">Maria Oliveira</option>
+            </select>
+            <div>
+                <label for="telefone-cliente">Telefone:</label>
+                <input type="text" id="telefone-cliente" name="telefone-cliente" readonly>
+                <img id="foto-cliente" src="" alt="Foto do cliente" class="imagem-cliente">
+            </div>
+        
+            <!-- Selecionar Serviço -->
+            <label for="servico">Serviço:</label>
+            <select id="servico" name="servico" required>
+                <option value="" disabled selected>Selecione um serviço</option>
+                <option value="1" data-tempo="45" data-valor="50.00">Corte Feminino</option>
+                <option value="2" data-tempo="30" data-valor="30.00">Corte Masculino</option>
+            </select>
+            <div>
+                <label for="tempo-servico">Tempo:</label>
+                <input type="text" id="tempo-servico" name="tempo-servico" readonly>
+                <label for="valor-servico">Valor:</label>
+                <input type="text" id="valor-servico" name="valor-servico" readonly>
+            </div>
+        
+            <!-- Selecionar Funcionário -->
+            <label for="funcionario">Funcionário:</label>
+            <select id="funcionario" name="funcionario" required>
+                <option value="" disabled selected>Selecione um funcionário</option>
+                <option value="1" data-cargo="Cabeleireiro">João Silva</option>
+                <option value="2" data-cargo="Manicure">Ana Santos</option>
+            </select>
+            <div>
+                <label for="cargo-funcionario">Cargo:</label>
+                <input type="text" id="cargo-funcionario" name="cargo-funcionario" readonly>
+            </div>
         </form>
-        <h2>Lista de Funcionários</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Cargo</th>
-                    <th>Salário</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Exemplo de linha preenchida -->
-                <tr>
-                    <td>João Silva</td>
-                    <td>joao@email.com</td>
-                    <td>(11) 99999-9999</td>
-                    <td>Cabeleireiro</td>
-                    <td>R$ 2.500,00</td>
-                    <td>
-                        <button class="editar">Editar</button>
-                        <button class="deletar">Deletar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </main>
     <footer>
         <p>&copy; 2025 Software para salões</p>
