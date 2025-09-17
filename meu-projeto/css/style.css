@@ -184,3 +184,13 @@ button:hover {
     border-radius:
     50%; /* Deixa a imagem circular */
 }
+
+form div {
+    margin-top: 10px;
+}
+
+form input[readonly] {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 5px;
+}

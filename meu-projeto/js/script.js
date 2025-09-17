@@ -168,3 +168,32 @@ document.addEventListener("click", function (event) {
         row.remove();
     }
 });
+
+// Preencher informações do cliente ao selecionar
+document.getElementById("cliente").addEventListener("change", function () {
+    const clienteSelecionado = this.options[this.selectedIndex]; // Obtém a opção selecionada
+    const telefone = clienteSelecionado.getAttribute("data-telefone"); // Obtém o telefone do atributo data-telefone
+    const foto = clienteSelecionado.getAttribute("data-foto"); // Obtém a foto do atributo data-foto
+
+    // Preenche os campos correspondentes
+    document.getElementById("telefone-cliente").value = telefone || "";
+    document.getElementById("foto-cliente").src = foto || "";
+});
+
+// Preencher informações do serviço ao selecionar
+document.getElementById("servico").addEventListener("change", function () {
+    const servicoSelecionado = this.options[this.selectedIndex];
+    const tempo = servicoSelecionado.getAttribute("data-tempo");
+    const valor = servicoSelecionado.getAttribute("data-valor");
+
+    document.getElementById("tempo-servico").value = `${tempo} minutos` || "";
+    document.getElementById("valor-servico").value = `R$ ${valor}` || "";
+});
+
+// Preencher informações do funcionário ao selecionar
+document.getElementById("funcionario").addEventListener("change", function () {
+    const funcionarioSelecionado = this.options[this.selectedIndex];
+    const cargo = funcionarioSelecionado.getAttribute("data-cargo");
+
+    document.getElementById("cargo-funcionario").value = cargo || "";
+});
