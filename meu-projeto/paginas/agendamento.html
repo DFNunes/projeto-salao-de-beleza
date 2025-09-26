@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR"></html>
+<html lang="pt-BR">
+
+</html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salão - agendamento</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <header>
         <nav>
@@ -21,20 +25,24 @@
     <main>
         <form id="form-agendamento">
             <h2>Agendamento</h2>
-        
+
             <!-- Selecionar Cliente -->
             <label for="cliente">Cliente:</label>
             <select id="cliente" name="cliente" required>
                 <option value="" disabled selected>Selecione um cliente</option>
-                <option value="1" data-telefone="(17) 22222-2222" data-foto="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg/960px-Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg">Presidente Bolsonaro</option>
-                <option value="2" data-telefone="(17) 22222-1717" data-foto="https://upload.wikimedia.org/wikipedia/commons/2/25/Michelle_Bolsonaro_em_8_de_mar%C3%A7o_de_2019.jpg">Primeira dama Michele</option>
+                <option value="1" data-telefone="(17) 22222-2222"
+                    data-foto="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg/960px-Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg">
+                    Presidente Bolsonaro</option>
+                <option value="2" data-telefone="(17) 22222-1717"
+                    data-foto="https://upload.wikimedia.org/wikipedia/commons/2/25/Michelle_Bolsonaro_em_8_de_mar%C3%A7o_de_2019.jpg">
+                    Primeira dama Michele</option>
             </select>
             <div>
                 <label for="telefone-cliente">Telefone:</label>
                 <input type="text" id="telefone-cliente" name="telefone-cliente" readonly>
                 <img id="foto-cliente" src="" alt="Foto do cliente" class="imagem-cliente">
             </div>
-        
+
             <!-- Selecionar Serviço -->
             <label for="servico">Serviço:</label>
             <select id="servico" name="servico" required>
@@ -48,7 +56,7 @@
                 <label for="valor-servico">Valor:</label>
                 <input type="text" id="valor-servico" name="valor-servico" readonly>
             </div>
-        
+
             <!-- Selecionar Funcionário -->
             <label for="funcionario">Funcionário:</label>
             <select id="funcionario" name="funcionario" required>
@@ -60,11 +68,30 @@
                 <label for="cargo-funcionario">Cargo:</label>
                 <input type="text" id="cargo-funcionario" name="cargo-funcionario" readonly>
             </div>
+            <button type="submit">Agendar</button>
         </form>
+        <h2>Lista de Agendamentos</h2>
+        <table border="1" id="tabela-agendamentos">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Telefone</th>
+                    <th>Serviço</th>
+                    <th>Funcionário</th>
+                    <th>Tempo</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas serão adicionadas dinamicamente -->
+            </tbody>
+        </table>
     </main>
     <footer>
         <p>&copy; 2025 Software para salões</p>
     </footer>
     <script src="../js/script.js"></script>
 </body>
+
 </html>

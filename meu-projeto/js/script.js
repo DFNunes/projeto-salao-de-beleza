@@ -47,23 +47,23 @@ if (formFuncionarios) {
 const formServicos = document.getElementById("form-cadastro-servicos");
 if (formServicos) {
     formServicos.addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita o recarregamento da página
+        event.preventDefault(); // Evita o recarregamento da página
 
-    // Captura os valores do formulário
-    const categoria = document.getElementById("categoria").value;
-    const servico = document.getElementById("servico").value;
-    const valor = document.getElementById("valor").value;
-    const horas = parseInt(document.getElementById("horas").value) || 0; // Converte para número ou 0
-    const minutos = parseInt(document.getElementById("minutos").value) || 0; // Converte para número ou 0
+        // Captura os valores do formulário
+        const categoria = document.getElementById("categoria").value;
+        const servico = document.getElementById("servico").value;
+        const valor = document.getElementById("valor").value;
+        const horas = parseInt(document.getElementById("horas").value) || 0; // Converte para número ou 0
+        const minutos = parseInt(document.getElementById("minutos").value) || 0; // Converte para número ou 0
 
-    // Formata o tempo como "Xh Ym"
-    const tempoFormatado = `${horas}h ${minutos}m`;
+        // Formata o tempo como "Xh Ym"
+        const tempoFormatado = `${horas}h ${minutos}m`;
 
-    // Cria uma nova linha na tabela
-    const tabela = document.querySelector("table tbody");
-    const novaLinha = document.createElement("tr");
+        // Cria uma nova linha na tabela
+        const tabela = document.querySelector("table tbody");
+        const novaLinha = document.createElement("tr");
 
-    novaLinha.innerHTML = `
+        novaLinha.innerHTML = `
         <td>${categoria}</td>
         <td>${servico}</td>
         <td>R$ ${parseFloat(valor).toFixed(2)}</td>
@@ -74,12 +74,12 @@ if (formServicos) {
         </td>
     `;
 
-    // Adiciona a nova linha à tabela
-    tabela.appendChild(novaLinha);
+        // Adiciona a nova linha à tabela
+        tabela.appendChild(novaLinha);
 
-    // Limpa os campos do formulário
-    document.getElementById("form-cadastro-servicos").reset();
-});
+        // Limpa os campos do formulário
+        document.getElementById("form-cadastro-servicos").reset();
+    });
 }
 
 // Função para adicionar uma nova linha à tabela
@@ -94,7 +94,7 @@ if (formClientes) {
         const telefone = document.getElementById("telefone").value;
         const imagem = document.getElementById("imagem").files[0];
         const imagemURL = imagem ? URL.createObjectURL(imagem) : "";
-       // const cargo = document.getElementById("imagem").value;
+        // const cargo = document.getElementById("imagem").value;
         // const salario = document.getElementById("salario").value;
 
         // Cria uma nova linha na tabela
@@ -120,6 +120,52 @@ if (formClientes) {
     });
 }
 
+const formAgendamento = document.getElementById("form-agendamento");
+if (formAgendamento) {
+    formAgendamento.addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita o recarregamento da página
+
+        // Captura os valores do formulário
+        const cliente = document.getElementById("cliente");
+        const clienteNome = cliente.options[cliente.selectedIndex].text;
+        const telefone = document.getElementById("telefone-cliente").value;
+        const servico = document.getElementById("servico");
+        const servicoNome = servico.options[servico.selectedIndex].text;
+        const tempo = document.getElementById("tempo-servico").value;
+        const valor = document.getElementById("valor-servico").value;
+        const funcionario = document.getElementById("funcionario");
+        const funcionarioNome = funcionario.options[funcionario.selectedIndex].text;
+
+        // Cria uma nova linha na tabela
+        const tabela = document.getElementById("tabela-agendamentos").querySelector("tbody");
+        const novaLinha = document.createElement("tr");
+
+        novaLinha.innerHTML = `
+            <td>${clienteNome}</td>
+            <td>${telefone}</td>
+            <td>${servicoNome}</td>
+            <td>${funcionarioNome}</td>
+            <td>${tempo}</td>
+            <td>${valor}</td>
+            <td>
+                <button class="editar">Editar</button>
+                <button class="deletar">Deletar</button>
+            </td>
+        `;
+
+        // Adiciona a nova linha à tabela
+        tabela.appendChild(novaLinha);
+
+        // Limpa os campos do formulário
+        formAgendamento.reset();
+        document.getElementById("telefone-cliente").value = "";
+        document.getElementById("foto-cliente").src = "";
+        document.getElementById("tempo-servico").value = "";
+        document.getElementById("valor-servico").value = "";
+        document.getElementById("cargo-funcionario").value = "";
+    });
+}
+
 // Função para "inativar" uma linha da tabela
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("deletar")) {
@@ -133,12 +179,12 @@ document.addEventListener("click", function (event) {
     if (event.target.classList.contains("editar")) {
         const row = event.target.closest("tr"); // Encontra a linha mais próxima
         const cells = row.querySelectorAll("td"); // Seleciona todas as células da linha
-               // Verifica se a linha está inativa
-               if (row.classList.contains("inativo")) {
-                alert("Não é possível editar um registro inativo."); // Mensagem de aviso
-                return; // Interrompe a execução
-            }
-    
+        // Verifica se a linha está inativa
+        if (row.classList.contains("inativo")) {
+            alert("Não é possível editar um registro inativo."); // Mensagem de aviso
+            return; // Interrompe a execução
+        }
+
         const tabela = row.closest("table"); // Identifica a tabela
 
         if (tabela.id === "tabela-profissionais") {
@@ -162,8 +208,40 @@ document.addEventListener("click", function (event) {
             document.getElementById("email").value = cells[1].textContent;
             document.getElementById("telefone").value = cells[2].textContent;
             // A imagem não é editada diretamente, pois requer upload
+        } else if (tabela.id === "tabela-agendamentos") {
+            // Edição para a tabela de agendamentos
+        
+            // Seleciona o cliente correspondente
+            document.getElementById("cliente").value = Array.from(document.getElementById("cliente").options)
+                .findIndex(option => option.text === cells[0].textContent);
+        
+            // Preenche o telefone do cliente
+            document.getElementById("telefone-cliente").value = cells[1].textContent;
+        
+            // Seleciona o serviço correspondente
+            document.getElementById("servico").value = Array.from(document.getElementById("servico").options)
+                .findIndex(option => option.text === cells[2].textContent);
+        
+            // Seleciona o funcionário correspondente
+            document.getElementById("funcionario").value = Array.from(document.getElementById("funcionario").options)
+                .findIndex(option => option.text === cells[3].textContent);
+        
+            // Preenche o tempo do serviço
+            document.getElementById("tempo-servico").value = cells[4].textContent;
+        
+            // Preenche o valor do serviço
+            document.getElementById("valor-servico").value = cells[5].textContent;
+        
+            // (Opcional) Atualiza a foto do cliente, se houver um campo de imagem
+            const fotoCliente = document.getElementById("foto-cliente");
+            if (fotoCliente) {
+                // Supondo que a foto seja armazenada como um atributo `data-foto` na tabela
+                const fotoUrl = cells[0].getAttribute("data-foto");
+                if (fotoUrl) {
+                    fotoCliente.src = fotoUrl;
+                }
+            }
         }
-
         // Remove a linha da tabela (opcional, para evitar duplicação)
         row.remove();
     }
