@@ -275,3 +275,88 @@ document.getElementById("funcionario").addEventListener("change", function () {
 
     document.getElementById("cargo-funcionario").value = cargo || "";
 });
+
+// Seleciona o campo de busca e a tabela
+const buscador = document.getElementById("buscador-tabela");
+const tabela = document.getElementById("tabela-agendamentos");
+
+if (buscador && tabela) {
+    const tbody = tabela.querySelector("tbody");
+    const linhasOriginais = Array.from(tbody.rows); // Salva as linhas originais da tabela
+
+    buscador.addEventListener("input", function () {
+        const termoBusca = buscador.value.toLowerCase(); // Obtém o texto da barra de busca
+
+        if (termoBusca === "") {
+            // Se a barra de busca estiver vazia, restaura a ordem original
+            tbody.innerHTML = ""; // Limpa o corpo da tabela
+            linhasOriginais.forEach(linha => tbody.appendChild(linha)); // Restaura as linhas originais
+        } else {
+            // Filtra as linhas que contêm o termo buscado
+            const linhasFiltradas = linhasOriginais.filter(linha => {
+                return Array.from(linha.cells).some(celula =>
+                    celula.textContent.toLowerCase().includes(termoBusca)
+                );
+            });
+
+            // Atualiza a tabela com as linhas filtradas
+            tbody.innerHTML = ""; // Limpa o corpo da tabela
+            linhasFiltradas.forEach(linha => tbody.appendChild(linha)); // Adiciona as linhas filtradas
+        }
+    });
+}
+
+
+// Seletores
+const seletorRelatorio = document.getElementById("seletor-relatorio");
+const tabelaFuncionarios = document.getElementById("relatorio-funcionarios");
+const tabelaClientes = document.getElementById("relatorio-clientes");
+
+// Evento para alternar entre os relatórios
+seletorRelatorio.addEventListener("change", function () {
+    const tipoRelatorio = seletorRelatorio.value;
+
+    // Oculta todas as tabelas
+    tabelaFuncionarios.style.display = "none";
+    tabelaClientes.style.display = "none";
+
+    // Mostra a tabela correspondente
+    if (tipoRelatorio === "funcionarios") {
+        tabelaFuncionarios.style.display = "table";
+    } else if (tipoRelatorio === "clientes") {
+        tabelaClientes.style.display = "table";
+    }
+});
+
+// Função para exportar a tabela em CSV
+function exportarTabelaParaCSV() {
+    const tabela = document.getElementById("tabela-relatorio");
+    if (!tabela) {
+        alert("Nenhum relatório gerado para exportar.");
+        return;
+    }
+
+    let csv = [];
+    const linhas = tabela.querySelectorAll("tr");
+
+    linhas.forEach(linha => {
+        const colunas = linha.querySelectorAll("th, td");
+        let linhaCSV = [];
+        colunas.forEach(coluna => linhaCSV.push(coluna.textContent));
+        csv.push(linhaCSV.join(","));
+    });
+
+    const csvString = csv.join("\n");
+    const blob = new Blob([csvString], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "relatorio.csv";
+    link.click();
+
+    window.URL.revokeObjectURL(url);
+}
+
+// Evento para exportar o relatório em CSV
+botaoExportar.addEventListener("click", exportarTabelaParaCSV);

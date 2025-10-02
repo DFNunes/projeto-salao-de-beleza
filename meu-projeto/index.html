@@ -21,6 +21,71 @@
     </header>
     <main>
         <p>Este é o conteúdo principal da página.</p>
+        
+        <h2>Relatórios</h2>
+        <label for="seletor-relatorio">Escolha o tipo de relatório:</label>
+        <select id="seletor-relatorio">
+            <option value="funcionarios">Relatório de Funcionários</option>
+            <option value="clientes">Relatório de Clientes</option>
+        </select>
+        
+        <div id="espaco-relatorio">
+            <!-- Tabela de Relatório de Funcionários -->
+            <table id="relatorio-funcionarios" class="tabela-relatorio" style="display: none;" border="1">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Cargo</th>
+                        <th>Salário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>João Silva</td>
+                        <td>joao@email.com</td>
+                        <td>(11) 99999-9999</td>
+                        <td>Cabelereiro</td>
+                        <td>R$ 2.500,00</td>
+                    </tr>
+                    <tr>
+                        <td>Maria Oliveira</td>
+                        <td>maria@email.com</td>
+                        <td>(11) 98888-8888</td>
+                        <td>Manicure</td>
+                        <td>R$ 2.000,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <!-- Tabela de Relatório de Clientes -->
+            <table id="relatorio-clientes" class="tabela-relatorio" style="display: none;" border="1">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Carla Souza</td>
+                        <td>carla@email.com</td>
+                        <td>(11) 97777-7777</td>
+                    </tr>
+                    <tr>
+                        <td>Pedro Santos</td>
+                        <td>pedro@email.com</td>
+                        <td>(11) 96666-6666</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <button id="exportar-csv">Exportar Relatório em CSV</button>
+        
+        <!--
         <h2>Lista de Funcionários</h2>
         <table border="1">
             <thead>
@@ -34,7 +99,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Exemplo de linha preenchida -->
+                
                 <tr>
                     <td>João Silva</td>
                     <td>joao@email.com</td>
@@ -47,7 +112,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </main>
     <footer>
         <p>&copy; 2025 Software para salões</p>
